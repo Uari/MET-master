@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body onload="failCheck()">
+
+<div class="container">
+
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+
+    <div class="jumbotron">
+        <h1>VISUAL ADMIN</h1>
+        <form role="form" action="/login" th:object="${loginForm}" method="post">
+            <div class="form-group">
+                <label th:for="id">ID</label>
+                <input type="text" th:field="*{id}" class="form-control" placeholder="jsdashboard.com"
+                    th:class="${#fields.hasErrors('id')}? 'form-control fieldError' : 'form-control'">
+                <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Incorrect date</p>
+            </div>
+            <div class="form-group">
+                <label th:for="pw">PW</label>
+                <input type="password" th:field="*{pw}" class="form-control" placeholder="*********">
+                <p th:if="${#fields.hasErrors('pw')}" th:errors="*{pw}">Incorrect date</p>
+            </div>
+            <div class="text-center form-group">
+                <button type="submit" class="btn btn-primary" value="login">submit</button>
+            </div>
+
+        </form>
+    </div>
+
+    <div th:replace="fragments/footer :: footer" />
+</div>
+
+</body>
+</html>

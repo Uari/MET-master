@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/METheader :: METheader">
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div id="page-wrapper">
+    <div th:replace="fragments/menu :: menu" />
+    <!-- 본문 -->
+    <div id="page-content-wrapper">
+        <div id="bodyContent" class="container-fluid">
+            <div>
+                <form id="trainingAdd">
+                    <div>
+                        <div>
+                            <label for="trainingNameAdd">훈련 명</label>
+                            <input type="text" id="trainingNameAdd" placeholder="training name">
+                        </div>
+                        <div>
+                            <label for="trainingAddStartTime">훈련 시작일</label>
+                            <input type="date" id="trainingAddStartTime">
+                        </div>
+                        <div>
+                            <label for="trainingAddEndTime">훈련 종료일</label>
+                            <input type="date" id="trainingAddEndTime">
+                        </div>
+                        <div>
+                            <button id="addTraining" onclick="trainingAdd()">훈련 추가</button>
+                        </div>
+                    </div>
+                </form>
+                <form id="trainingRemove">
+                    <div>
+                        <div>
+                            <label for="trainingNameRemove">훈련 명</label>
+                            <select th:if="" id="trainingNameRemove" class="" >
+                                <option th:each="training:${scenarioInfoList}" th:value="${scenario.scenarioId}" th:text="${scenario.scenarioName}"></option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="trainingRemoveStartTime">훈련 시작일</label>
+                            <input type="date" id="trainingRemoveStartTime">
+                        </div>
+                        <div>
+                            <label for="trainingRemoveEndTime">훈련 종료일</label>
+                            <input type="date" id="trainingRemoveEndTime">
+                        </div>
+                        <div>
+                            <button id="removeTraining" onclick="trainingRemove()">훈련 삭제</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div th:replace="fragments/footer :: footer" />
+        </div>
+    </div>
+</div>
+</body>
+</html>

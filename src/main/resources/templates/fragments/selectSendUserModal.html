@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="selectSendUserModal" th:fragment="selectSendUserModal">
+    <div id="sendUserModalDiv" class="modal" tabindex="-1" role="dialog" aria-labelledby="sendUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">메일 수신자 선택</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="modalClick('off')"><span aria-hidden="true">×</span></button>
+                </div>
+                <div id="modalTable" class="modal-body">
+                    <select id="corpNames" multiple class="" onchange="changeSelect('/callDepInfo', '#selectCorp', this.options[this.selectedIndex].value)">
+                        <option th:each="corp:${corpInfoList}" th:value="${corp.corpId}" th:text="${corp.corpName}"></option>
+                    </select>
+                    <div id="selectCorp">
+                        <select id="depNames" multiple class="" onchange="changeSelect('/callTeamInfo', '#selectDep', this.options[this.selectedIndex].value)">
+                            <option th:each="dep:${depInfoList}" th:value="${dep.depId}" th:text="${dep.depName}"></option>
+                        </select>
+                        <div id="selectDep">
+                            <select id="teamNames" multiple class="" onchange="changeSelect('/callUserInfo', '#userNames', this.options[this.selectedIndex].value)">
+                                <option th:each="team:${teamInfoList}" th:value="${team.teamId}" th:text="${team.teamName}"></option>
+                            </select>
+                            <select id="userNames" multiple class=""> <!-- userName + userAddr 표시하기 -->
+                                <option th:each="user:${userInfoList}" th:value="${user.userId}" th:text="${user.userName}+'<'+${user.userAddr}+'>'"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <select id="toUserNames" multiple class="">
+                    </select>
+
+                    <button type="button" class="btn btn-primary" onclick="addUser()">추가</button>
+                    <button type="button" class="btn btn-default" id="decreaseUser" onclick="removeUser()">빼기</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="applyToUserInfo()">적용</button>
+                    <button type="button" class="btn btn-default" id="closeModalBtn" onclick="modalClick('off')">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

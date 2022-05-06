@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/METheader :: METheader">
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div id="page-wrapper">
+    <div th:replace="fragments/menu :: menu" />
+        <!-- 본문 -->
+        <div id="page-content-wrapper">
+            <div id="bodyContent" class="container-fluid">
+                <h1>조직도 관리</h1>
+                <button onclick="/department" >부서 관리</button>
+                <button onclick="/team" >팀 관리</button>
+                <button onclick="/personal" >사원 관리</button>
+                <button onclick="/current_organization" >조직도 현황</button> <!-- 조직도 한눈에 보기 좋게 보여주는 기능-->
+
+                <div id="organization_content">
+                    <th:block th:if="${activeMode} == 'depMode'" > <!--department-->
+                        <div id="department_content">
+                            <form role="form" action="/dep_add" th:object="${depInfo}" method="post">
+                                <select id="corp_list" th:text="${corpName}">
+
+                                </select>
+                                <input type="text" th:field="*{Name}" placeholder="등록할 부서명을 입력">
+                                <button onclick="inputData(this)">등록</button>
+                            </form>
+                            <form role="form" action="/dep_del" th:object="${depInfo}" method="post">
+                                <select>
+
+                                </select>
+                                <select id="dep_list" th:text="${depName}">
+
+                                </select>
+                                <button onclick="deleteData(this)">삭제</button>
+                            </form>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${activeMode} == 'teamMode'" > <!--team-->
+
+                    </th:block>
+                    <th:block th:if="${activeMode} == 'perMode'" > <!--personal-->
+
+                    </th:block>
+                    <th:block th:if="${activeMode} == 'showMode'" > <!--current_organization-->
+
+                    </th:block>
+                </div>
+
+            <div th:replace="fragments/footer :: footer" />
+        </div>
+    </div>
+</div>
+</body>
+</html>

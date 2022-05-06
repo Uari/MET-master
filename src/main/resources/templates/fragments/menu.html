@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="menu" th:fragment="menu">
+    <!-- 사이드바 -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">MET</a>
+                <div th:text="${userName}"></div><div>님 환영합니다</div>
+            </li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/organization">조직도관리</a></li>
+            <li><a href="/personalInfoManagement">개인정보관리</a></li>
+            <li><a href="/sendMail">메일 전송</a></li>
+            <li><a href="/training">훈련 등록</a></li>
+            <li><a href="/trainingStatus">훈련 상태 조회</a></li>
+            <li><a href="/smtpSet">메일 서버 설정</a></li>
+            <li><a href="/login">Sign Out</a></li>
+        </ul>
+    </div>
+    <!-- /사이드바 -->
+</div>

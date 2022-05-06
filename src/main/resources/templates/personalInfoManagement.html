@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/METheader :: METheader">
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div id="page-wrapper">
+    <div th:replace="fragments/menu :: menu" />
+    <!-- 본문 -->
+    <div id="page-content-wrapper">
+        <div id="bodyContent" class="container-fluid">
+            personal info management page
+
+            <div th:replace="fragments/footer :: footer" />
+        </div>
+    </div>
+</div>
+</body>
+</html>

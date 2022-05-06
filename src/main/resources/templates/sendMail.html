@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/METheader :: METheader">
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div id="page-wrapper">
+    <div th:replace="fragments/menu :: menu" />
+    <!-- 본문 -->
+    <div id="page-content-wrapper">
+        <div id="bodyContent" class="container-fluid">
+
+            <div>
+                <form id="scenarioInfoForm">
+
+                    <div th:if="${scenarioInfo} != null">
+                        <div>
+                            <label for="sender">발신인</label>
+                            <input th:value="${scenarioInfo.scenarioId}" type="text" id="scenarioId" style="display : none">
+                            <input th:value="${scenarioInfo.sendMailUser}" type="text" id="sender" placeholder="sender">
+                        </div>
+                        <div>
+                            <label for="senderAddr">발신인 주소</label>
+                            <input th:value="${scenarioInfo.sendMailAddr}" type="text" id="senderAddr" placeholder="example@example.com">
+                        </div>
+                        <div>
+                            <label for="mailTitle">메일 제목</label>
+                            <input th:value="${scenarioInfo.mailTitle}" type="text" id="mailTitle" placeholder="mailTitle">
+                        </div>
+                        <div>
+                            <label for="mailContent">메일 내용</label>
+                            <input th:value="${scenarioInfo.mailContent}" type="text" id="mailContent" width="500px" height="700px">
+                        </div>
+                    </div>
+                    <div th:if="${scenarioInfo} == null">
+                        <div>
+                            <label for="sender">발신인</label>
+                            <input type="text" id="notSelectedSender" placeholder="sender">
+                        </div>
+                        <div>
+                            <label for="senderAddr">발신인 주소</label>
+                            <input type="text" id="notSelectedSenderAddr" placeholder="example@example.com">
+                        </div>
+                        <div>
+                            <label for="mailTitle">메일 제목</label>
+                            <input type="text" id="notSelectedMailTitle" placeholder="mailTitle">
+                        </div>
+                        <div>
+                            <label for="mailContent">메일 내용</label>
+                            <input type="text" id="notSelectedMailContent">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div>
+                <label for="scenarioNames">시나리오 로드</label>
+                <button onclick="loadScenario()" value="적용">적용</button>
+                <select id="scenarioNames" multiple class="" >
+                    <option th:each="scenario:${scenarioInfoList}" th:value="${scenario.scenarioId}" th:text="${scenario.scenarioName}"></option>
+                </select>
+            </div>
+            <div>
+                <label for="sendUserNames">수신인</label>
+                <button id="sendUserModal" value="추가" onclick="modalClick('on')">추가</button>
+                <select id="sendUserNames" multiple class="">
+                </select>
+            </div>
+            <div>
+                <button id="sendMailBtn" value="발송" onclick="doSendMail()">발송</button>
+            </div>
+
+            <div th:replace="fragments/footer :: footer" />
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/selectSendUserModal :: selectSendUserModal" />
+
+</body>
+</html>
